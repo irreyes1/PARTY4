@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fiesta Jurásica · Asier cumple 4 años</title>
+  <meta name="description" content="Invitación: Fiesta Jurásica de Asier (4 años). 11/01/2026 10:00 · Passeig Tramuntana 14–16, Castelldefels." />
+
+  <style>
+    :root{
+      --bg: #0b0f14;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.09);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --line: rgba(255,255,255,.12);
+      --red: #ff2d2d;
+      --red2:#ff5a5a;
+      --green:#2cff7a;
+      --shadow: 0 18px 50px rgba(0,0,0,.45);
+      --radius: 20px;
+    }
+
+    *{ box-sizing:border-box; }
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+  color:var(--text);
+
+  /* Patrón dinosaurios (SVG) + degradados */
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.08' stroke-width='2'%3E%3Cpath d='M60 120c15-30 55-45 85-22 12 10 14 26 2 36-10 9-26 8-34-1-6-7-4-16 3-20'/%3E%3Cpath d='M140 86c10-4 18 3 16 12-2 10-16 12-22 4'/%3E%3Cpath d='M78 150c6 8 16 12 26 10'/%3E%3Cpath d='M112 152l-6 18'/%3E%3Cpath d='M126 152l6 18'/%3E%3Cpath d='M150 130c14 4 20 16 18 28'/%3E%3C/g%3E%3C/svg%3E") repeat,
+    radial-gradient(1000px 700px at 20% 10%, rgba(255,45,45,.18), transparent 60%),
+    radial-gradient(900px 650px at 85% 20%, rgba(44,255,122,.10), transparent 60%),
+    radial-gradient(900px 900px at 60% 90%, rgba(255,255,255,.06), transparent 65%),
+    var(--bg);
+
+  min-height:100vh;
+}
+
+
+    .wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 18px 14px 44px;
+    }
+
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin: 6px 0 14px;
+      opacity:.92;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      border-radius: 999px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .badge b{ color:#fff; }
+    .dot{
+      width:10px;height:10px;border-radius:999px;
+      background: linear-gradient(135deg, var(--red), var(--red2));
+      box-shadow: 0 0 0 6px rgba(255,45,45,.16);
+    }
+
+    .hero{
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border-radius: var(--radius);
+      padding: 22px 16px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow:hidden;
+    }
+
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      background:
+        radial-gradient(500px 220px at 15% 0%, rgba(255,45,45,.22), transparent 60%),
+        radial-gradient(520px 240px at 90% 10%, rgba(44,255,122,.14), transparent 55%);
+      pointer-events:none;
+      opacity:.9;
+    }
+
+    .hero-inner{ position:relative; }
+
+    .title{
+      font-size: 28px;
+      line-height:1.1;
+      margin: 0 0 10px;
+      letter-spacing: -0.6px;
+    }
+    .subtitle{
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 15.5px;
+      line-height: 1.4;
+    }
+
+    .meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin: 10px 0 18px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 9px 12px;
+      border:1px solid var(--line);
+      background: rgba(0,0,0,.18);
+      border-radius: 999px;
+      color: rgba(255,255,255,.9);
+      font-size: 13.5px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .card{
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,.25);
+    }
+
+    .card h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: -.3px;
+    }
+
+    .card p{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+      font-size: 14.5px;
+    }
+
+    /* Video */
+    .video{
+      border-radius: calc(var(--radius) - 6px);
+      overflow:hidden;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.25);
+    }
+
+    .ratio{
+      position:relative;
+      width:100%;
+      padding-top: 56.25%;
+    }
+    .ratio > *{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      border:0;
+      display:block;
+    }
+
+    .video-placeholder{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap:10px;
+      color: rgba(255,255,255,.86);
+      padding: 14px;
+      text-align:center;
+      background:
+        radial-gradient(600px 280px at 30% 20%, rgba(255,45,45,.22), transparent 60%),
+        radial-gradient(520px 240px at 80% 30%, rgba(44,255,122,.14), transparent 60%),
+        rgba(0,0,0,.28);
+    }
+    .video-placeholder .play{
+      width:54px;height:54px;border-radius:999px;
+      background: linear-gradient(135deg, var(--red), var(--red2));
+      display:grid;place-items:center;
+      box-shadow: 0 14px 30px rgba(255,45,45,.18);
+    }
+    .video-placeholder small{ color: var(--muted); }
+
+    /* Countdown */
+    .countdown{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .timebox{
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 12px 10px;
+      text-align:center;
+    }
+    .timebox .num{
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+    .timebox .lab{
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    /* Buttons */
+    .actions{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top: 12px;
+    }
+    .btn{
+      appearance:none;
+      border:0;
+      cursor:pointer;
+      text-decoration:none;
+      text-align:center;
+      padding: 13px 14px;
+      border-radius: 16px;
+      font-weight: 800;
+      letter-spacing: .2px;
+      font-size: 15px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      transition: transform .08s ease, filter .12s ease;
+      user-select:none;
+    }
+    .btn:active{ transform: scale(.99); }
+    .btn-primary{
+      background: linear-gradient(135deg, var(--red), var(--red2));
+      color:#130000;
+      box-shadow: 0 18px 42px rgba(255,45,45,.20);
+    }
+    .btn-ghost{
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.92);
+      border:1px solid var(--line);
+    }
+
+    /* Map */
+    .map{
+      border-radius: calc(var(--radius) - 6px);
+      overflow:hidden;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.20);
+    }
+
+    .footer{
+      margin-top: 18px;
+      color: rgba(255,255,255,.65);
+      font-size: 12.5px;
+      text-align:center;
+      opacity:.9;
+    }
+
+    /* Desktop improvements */
+    @media (min-width: 860px){
+      .wrap{ padding: 26px 18px 64px; }
+      .grid{ grid-template-columns: 1.15fr .85fr; align-items: start; }
+      .title{ font-size: 38px; }
+      .subtitle{ font-size: 16px; }
+      .actions{ flex-direction: row; }
+      .btn{ flex:1; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="badge">
+        <span class="dot"></span>
+        <span><b>Fiesta Jurásica</b> · Invitación</span>
+      </div>
+      <div class="badge" aria-label="Decoración">
+        🦖 🦕 🐾
+      </div>
+    </div>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <h1 class="title">🦖 Fiesta Jurásica · Asier cumple 4 años</h1>
+        <p class="subtitle">
+          ¡Atención exploradores! Preparaos para una mañana llena de juegos, risas y dinosaurios.
+        </p>
+
+        <div class="meta">
+          <div class="pill">📅 <b>Domingo</b> · 11/01/2026</div>
+          <div class="pill">⏰ <b>10:00-12:00</b></div>
+          <div class="pill">📍 Castelldefels</div>
+        </div>
+
+        <div class="grid">
+          <!-- Video -->
+          <div class="card">
+            <h2>🎬 Vídeo de presentación</h2>
+            <p>Un teaser cortito para entrar en modo jurásico.</p>
+
+            <div class="video" style="margin-top:12px;">
+              <div class="ratio">
+
+<iframe
+  width="100%"
+  height="315"
+  src="https://www.youtube.com/embed/QdsbJketqZc"
+  title="Video de SuperDino"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen>
+</iframe>
+
+
+
+ 
+              </div>
+            </div>
+          </div>
+
+          <!-- Countdown + RSVP -->
+          <div class="card">
+            <h2>⏳ Cuenta atrás</h2>
+            <p>Falta muy poco para viajar a la era de los dinosaurios…</p>
+
+            <div class="countdown" aria-label="Cuenta atrás">
+              <div class="timebox"><div class="num" id="dd">--</div><div class="lab">Días</div></div>
+              <div class="timebox"><div class="num" id="hh">--</div><div class="lab">Horas</div></div>
+              <div class="timebox"><div class="num" id="mm">--</div><div class="lab">Min</div></div>
+              <div class="timebox"><div class="num" id="ss">--</div><div class="lab">Seg</div></div>
+            </div>
+
+            <div class="actions">
+              <a class="btn btn-primary" id="rsvpBtn" href="#" target="_blank" rel="noopener">
+                ✅ Confirmar asistencia
+              </a>
+              <a class="btn btn-ghost" id="mapsBtn" href="#" target="_blank" rel="noopener">
+                🗺️ Cómo llegar
+              </a>
+            </div>
+
+            <p style="margin-top:12px; font-size:13px;">
+              En el formulario solo pedimos <b>nombre del niño</b> 
+			  que <b>asistirá </b>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Info -->
+    <section class="card" style="margin-top:14px;">
+      <h2>📍 Información del evento</h2>
+      <p>
+        🗓 Domingo 11/01/2026 · ⏰ 10:00-12:00/b><br/>
+        📍 Passeig Tramuntana 14–16, Castelldefels
+      </p>
+      <p style="margin-top:10px;">
+        🎈 Qué habrá:<br/>
+        • Temática dinosaurios 🦖🦕<br/>
+        • Zona interior para juegos y desayuno <br/>
+        • Zona exterior para actividades en pista de tenis
+      </p>
+    </section>
+
+    <!-- Map -->
+    <section class="card" style="margin-top:14px;">
+      <h2>🗺️ Ubicación</h2>
+      <p>Te dejamos el mapa para llegar fácil.</p>
+
+      <div class="map" style="margin-top:12px;">
+        <div class="ratio" style="padding-top: 62%;">
+          <!-- Mapa embebido. Si prefieres, lo quitamos y dejamos solo el botón -->
+          <iframe
+            title="Mapa - Passeig Tramuntana 14-16, Castelldefels"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps?q=Passeig%20Tramuntana%2014-16%2C%20Castelldefels&output=embed">
+          </iframe>
+        </div>
+      </div>
+	  <div style="margin-top:14px; border-top:1px solid var(--line); padding-top:14px;">
+  <h3 style="margin:0 0 8px; font-size:16px;">🚗 Cómo llegar</h3>
+  <p style="margin:0; color:var(--muted); font-size:14.5px; line-height:1.55;">
+    <b>En coche<br/>
+    1) Pon en el GPS: <b>Passeig Tramuntana 14–16</b>.<br/>
+    2) Aparca en zona verde en frente 🐾.
+  </p>
+
+  <p style="margin:10px 0 0; color:var(--muted); font-size:14.5px; line-height:1.55;">
+    <b>En autobús<br/>
+    • línea L95 / Parada Pg. Tramuntana - carrer 22 </b>.<br/>
+  </p>
+
+</div>
+
+    </section>
+
+    <div class="footer">
+       ¡Nos vemos en la aventura jurásica! 🦖🎂
+    </div>
+  </div>
+
+  <script>
+    // ==== CONFIGURA AQUÍ TUS LINKS ====
+    const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSebuLSoEXRpT8TgJgZUFZwyLUHlPSElq6BzBKfa4Gm5nfP-PA/viewform?usp=dialog"; // ej: https://forms.gle/XXXX
+    const MAPS_URL = "https://www.google.com/maps?q=" + encodeURIComponent("Passeig Tramuntana 14-16, Castelldefels");
+
+    // Fecha del evento: 11/01/2026 10:00 Europe/Madrid
+    // Truco: construimos una fecha en UTC equivalente a 10:00 en Madrid.
+    // En enero, Madrid = UTC+1 normalmente -> 10:00 Madrid = 09:00 UTC.
+    const EVENT_UTC_ISO = "2026-01-11T09:00:00Z";
+
+    // Botones
+    document.getElementById("rsvpBtn").href = FORM_URL;
+    document.getElementById("mapsBtn").href = MAPS_URL;
+
+    function pad(n){ return String(n).padStart(2,"0"); }
+
+    function updateCountdown(){
+      const now = new Date();
+      const target = new Date(EVENT_UTC_ISO);
+      let diff = target - now;
+
+      if (diff <= 0){
+        document.getElementById("dd").textContent = "00";
+        document.getElementById("hh").textContent = "00";
+        document.getElementById("mm").textContent = "00";
+        document.getElementById("ss").textContent = "00";
+        return;
+      }
+
+      const sec = Math.floor(diff / 1000);
+      const days = Math.floor(sec / 86400);
+      const hours = Math.floor((sec % 86400) / 3600);
+      const mins = Math.floor((sec % 3600) / 60);
+      const secs = sec % 60;
+
+      document.getElementById("dd").textContent = pad(days);
+      document.getElementById("hh").textContent = pad(hours);
+      document.getElementById("mm").textContent = pad(mins);
+      document.getElementById("ss").textContent = pad(secs);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
