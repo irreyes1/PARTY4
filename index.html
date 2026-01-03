@@ -22,22 +22,36 @@
     }
 
     *{ box-sizing:border-box; }
-body{
-  margin:0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-  color:var(--text);
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color:var(--text);
 
-  /* Patrón dinosaurios (SVG) + degradados */
-  background:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.08' stroke-width='2'%3E%3Cpath d='M60 120c15-30 55-45 85-22 12 10 14 26 2 36-10 9-26 8-34-1-6-7-4-16 3-20'/%3E%3Cpath d='M140 86c10-4 18 3 16 12-2 10-16 12-22 4'/%3E%3Cpath d='M78 150c6 8 16 12 26 10'/%3E%3Cpath d='M112 152l-6 18'/%3E%3Cpath d='M126 152l6 18'/%3E%3Cpath d='M150 130c14 4 20 16 18 28'/%3E%3C/g%3E%3C/svg%3E") repeat,
-    radial-gradient(1000px 700px at 20% 10%, rgba(255,45,45,.18), transparent 60%),
-    radial-gradient(900px 650px at 85% 20%, rgba(44,255,122,.10), transparent 60%),
-    radial-gradient(900px 900px at 60% 90%, rgba(255,255,255,.06), transparent 65%),
-    var(--bg);
+      /* Fondo: imagen fondo.png + patrón + degradados */
+      background:
+        radial-gradient(1000px 700px at 20% 10%, rgba(255,45,45,.18), transparent 60%),
+        radial-gradient(900px 650px at 85% 20%, rgba(44,255,122,.10), transparent 60%),
+        radial-gradient(900px 900px at 60% 90%, rgba(255,255,255,.06), transparent 65%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='0.08' stroke-width='2'%3E%3Cpath d='M60 120c15-30 55-45 85-22 12 10 14 26 2 36-10 9-26 8-34-1-6-7-4-16 3-20'/%3E%3Cpath d='M140 86c10-4 18 3 16 12-2 10-16 12-22 4'/%3E%3Cpath d='M78 150c6 8 16 12 26 10'/%3E%3Cpath d='M112 152l-6 18'/%3E%3Cpath d='M126 152l6 18'/%3E%3Cpath d='M150 130c14 4 20 16 18 28'/%3E%3C/g%3E%3C/svg%3E") repeat,
+        url("fondo.png");
 
-  min-height:100vh;
-}
+      background-size: auto, auto, auto, 220px 220px, cover;
+      background-position: center, center, center, 0 0, center;
+      background-repeat: no-repeat, no-repeat, no-repeat, repeat, no-repeat;
+      background-attachment: scroll, scroll, scroll, scroll, fixed;
 
+      min-height:100vh;
+    }
+
+    /* Overlay para legibilidad del texto */
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background: rgba(0,0,0,.45);
+      z-index:-1;
+      pointer-events:none;
+    }
 
     .wrap{
       max-width: 980px;
@@ -175,28 +189,6 @@ body{
       display:block;
     }
 
-    .video-placeholder{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex-direction:column;
-      gap:10px;
-      color: rgba(255,255,255,.86);
-      padding: 14px;
-      text-align:center;
-      background:
-        radial-gradient(600px 280px at 30% 20%, rgba(255,45,45,.22), transparent 60%),
-        radial-gradient(520px 240px at 80% 30%, rgba(44,255,122,.14), transparent 60%),
-        rgba(0,0,0,.28);
-    }
-    .video-placeholder .play{
-      width:54px;height:54px;border-radius:999px;
-      background: linear-gradient(135deg, var(--red), var(--red2));
-      display:grid;place-items:center;
-      box-shadow: 0 14px 30px rgba(255,45,45,.18);
-    }
-    .video-placeholder small{ color: var(--muted); }
-
     /* Countdown */
     .countdown{
       display:grid;
@@ -267,6 +259,25 @@ body{
       background: rgba(0,0,0,.20);
     }
 
+    /* Imagen niños */
+    .photo{
+      border-radius: calc(var(--radius) - 6px);
+      overflow:hidden;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.20);
+    }
+    .photo img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+    .caption{
+      margin-top:10px;
+      color: var(--muted);
+      font-size: 14.5px;
+      line-height: 1.5;
+    }
+
     .footer{
       margin-top: 18px;
       color: rgba(255,255,255,.65);
@@ -320,20 +331,10 @@ body{
 
             <div class="video" style="margin-top:12px;">
               <div class="ratio">
-
-<iframe
-  width="100%"
-  height="315"
-  src="https://www.youtube.com/embed/QdsbJketqZc"
-  title="Video de SuperDino"
-  frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-  allowfullscreen>
-</iframe>
-
-
-
- 
+                <video controls playsinline preload="metadata">
+                  <source src="video_Cumple4.mp4" type="video/mp4">
+                  Tu navegador no soporta vídeo.
+                </video>
               </div>
             </div>
           </div>
@@ -359,26 +360,39 @@ body{
               </a>
             </div>
 
-            <p style="margin-top:12px; font-size:13px;">
-              En el formulario solo pedimos <b>nombre del niño</b> 
-			  que <b>asistirá </b>.
+            <p style="margin-top:12px; font-size:13px; color:var(--muted); line-height:1.5;">
+              En el formulario solo pedimos <b>nombre del niño</b> que <b>asistirá</b>.
             </p>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- Foto niños (añadida) -->
+    <section class="card" style="margin-top:14px;">
+      <h2>📸 Así será la aventura</h2>
+      <p>Un adelanto del ambiente jurásico que nos espera 😄</p>
+
+      <div class="photo" style="margin-top:12px;">
+        <img src="niños_generados_IA.jpg" alt="Niños jugando en una fiesta jurásica" loading="lazy">
+      </div>
+
+      <p class="caption">
+        Traed ganas de correr, saltar y pasarlo en grande. ¡SuperDino tiene sorpresas! 🦖✨
+      </p>
+    </section>
+
     <!-- Info -->
     <section class="card" style="margin-top:14px;">
       <h2>📍 Información del evento</h2>
       <p>
-        🗓 Domingo 11/01/2026 · ⏰ 10:00-12:00/b><br/>
+        🗓 Domingo 11/01/2026 · ⏰ 10:00-12:00<br/>
         📍 Passeig Tramuntana 14–16, Castelldefels
       </p>
       <p style="margin-top:10px;">
         🎈 Qué habrá:<br/>
         • Temática dinosaurios 🦖🦕<br/>
-        • Zona interior para juegos y desayuno <br/>
+        • Zona interior para juegos y desayuno<br/>
         • Zona exterior para actividades en pista de tenis
       </p>
     </section>
@@ -390,7 +404,6 @@ body{
 
       <div class="map" style="margin-top:12px;">
         <div class="ratio" style="padding-top: 62%;">
-          <!-- Mapa embebido. Si prefieres, lo quitamos y dejamos solo el botón -->
           <iframe
             title="Mapa - Passeig Tramuntana 14-16, Castelldefels"
             loading="lazy"
@@ -399,36 +412,35 @@ body{
           </iframe>
         </div>
       </div>
-	  <div style="margin-top:14px; border-top:1px solid var(--line); padding-top:14px;">
-  <h3 style="margin:0 0 8px; font-size:16px;">🚗 Cómo llegar</h3>
-  <p style="margin:0; color:var(--muted); font-size:14.5px; line-height:1.55;">
-    <b>En coche<br/>
-    1) Pon en el GPS: <b>Passeig Tramuntana 14–16</b>.<br/>
-    2) Aparca en zona verde en frente 🐾.
-  </p>
 
-  <p style="margin:10px 0 0; color:var(--muted); font-size:14.5px; line-height:1.55;">
-    <b>En autobús<br/>
-    • línea L95 / Parada Pg. Tramuntana - carrer 22 </b>.<br/>
-  </p>
+      <div style="margin-top:14px; border-top:1px solid var(--line); padding-top:14px;">
+        <h3 style="margin:0 0 8px; font-size:16px;">🚗 Cómo llegar</h3>
 
-</div>
+        <p style="margin:0; color:var(--muted); font-size:14.5px; line-height:1.55;">
+          <b>En coche:</b><br/>
+          1) Pon en el GPS: <b>Passeig Tramuntana 14–16</b>.<br/>
+          2) Aparca en zona verde por la zona 🐾.
+        </p>
 
+        <p style="margin:10px 0 0; color:var(--muted); font-size:14.5px; line-height:1.55;">
+          <b>En autobús:</b><br/>
+          • Línea L95 (o similar según horario) · parada cercana <b>Pg. Tramuntana / Carrer 22</b>.
+        </p>
+      </div>
     </section>
 
     <div class="footer">
-       ¡Nos vemos en la aventura jurásica! 🦖🎂
+      ¡Nos vemos en la aventura jurásica! 🦖🎂
     </div>
   </div>
 
   <script>
     // ==== CONFIGURA AQUÍ TUS LINKS ====
-    const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSebuLSoEXRpT8TgJgZUFZwyLUHlPSElq6BzBKfa4Gm5nfP-PA/viewform?usp=dialog"; // ej: https://forms.gle/XXXX
+    const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSebuLSoEXRpT8TgJgZUFZwyLUHlPSElq6BzBKfa4Gm5nfP-PA/viewform?usp=dialog";
     const MAPS_URL = "https://www.google.com/maps?q=" + encodeURIComponent("Passeig Tramuntana 14-16, Castelldefels");
 
     // Fecha del evento: 11/01/2026 10:00 Europe/Madrid
-    // Truco: construimos una fecha en UTC equivalente a 10:00 en Madrid.
-    // En enero, Madrid = UTC+1 normalmente -> 10:00 Madrid = 09:00 UTC.
+    // Enero en Madrid suele ser UTC+1 => 10:00 Madrid = 09:00 UTC
     const EVENT_UTC_ISO = "2026-01-11T09:00:00Z";
 
     // Botones
